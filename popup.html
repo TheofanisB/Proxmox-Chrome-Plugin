@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <header>
+    <div class="title">Proxmox Quick Control</div>
+    <div class="header-actions">
+      <span id="fetched" class="muted"></span>
+      <button id="refresh" title="Refresh now" class="icon-btn">&#x21bb;</button>
+    </div>
+  </header>
+
+  <div id="content">
+    <div id="empty" class="empty hidden">
+      <p>Not configured yet.</p>
+      <button id="goSettings" class="primary">Open Settings</button>
+    </div>
+    <div id="error" class="error hidden"></div>
+    <div id="nodes"></div>
+  </div>
+
+  <footer>
+    <button id="openSettings" class="footer-btn">&#9881; Settings</button>
+  </footer>
+
+  <script src="popup.js"></script>
+</body>
+</html>

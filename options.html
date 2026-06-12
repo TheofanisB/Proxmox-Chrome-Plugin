@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Proxmox Quick Control — Settings</title>
+  <link rel="stylesheet" href="options.css">
+</head>
+<body>
+  <div class="wrap">
+    <h1>Proxmox Quick Control</h1>
+    <p class="muted">Connect to your Proxmox VE cluster using an API token.</p>
+
+    <div class="card">
+      <h2>Connection</h2>
+
+      <label>Host (URL or hostname)</label>
+      <input type="text" id="host" placeholder="https://proxmox.local:8006">
+      <div class="hint">If port is omitted, 8006 is used. Visit the URL once in your browser to accept the TLS certificate before saving.</div>
+
+      <label>API Token ID</label>
+      <input type="text" id="tokenId" placeholder="root@pam!chrome-plugin">
+      <div class="hint">Format: <code>user@realm!tokenname</code></div>
+
+      <label>API Token Secret</label>
+      <input type="password" id="tokenSecret" placeholder="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx">
+      <div class="hint">
+        Create in Proxmox: <em>Datacenter → Permissions → API Tokens → Add</em>.
+        For full control, give the token role <code>PVEAdmin</code> (or a narrower role with VM/CT/Node power permissions). Uncheck "Privilege Separation" if the user already has the needed permissions.
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Behavior</h2>
+
+      <label>Refresh interval (minutes)</label>
+      <input type="number" id="refreshMinutes" min="1" max="60" value="1">
+
+      <label class="check">
+        <input type="checkbox" id="confirmDestructive" checked>
+        Confirm before stop / shutdown / reboot
+      </label>
+    </div>
+
+    <div class="card">
+      <h2>Wake on LAN</h2>
+      <p class="muted">
+        Chrome extensions can't send UDP magic packets directly. WoL uses Proxmox's
+        <code>/nodes/{node}/wakeonlan</code> endpoint, so it requires another node in the cluster
+        to be online and the offline node's MAC address configured under
+        <em>Datacenter → Node → Edit → Wake-on-LAN</em>.
+      </p>
+    </div>
+
+    <div class="actions">
+      <button id="test" class="secondary">Test Connection</button>
+      <button id="save" class="primary">Save</button>
+    </div>
+
+    <div id="status"></div>
+  </div>
+
+  <script src="options.js"></script>
+</body>
+</html>
