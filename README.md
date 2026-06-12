@@ -6,6 +6,8 @@ Each node, VM and container gets a little colored square next to its name - gree
 
 I built this because I got tired of opening Proxmox in a tab just to reboot one LXC.
 
+> **Heads up:** most of the JavaScript in here was written with GitHub Copilot. I designed the thing, wired it up, and tested it against my own cluster, but the actual JS is largely Copilot output that I reviewed and edited. If you're auditing it before pointing it at a production box, keep that in mind.
+
 ## Installing it
 
 Go to `chrome://extensions`, flip on developer mode, hit "Load unpacked", point it at this folder. Pin it to the toolbar if you want, then click it and go to Settings.
